@@ -8,8 +8,8 @@ class Wallet {
 
     this.checkCanPlay = bet => {
       if (bet > _money) {
-        console.log("you cant play");
-      } else console.log("fine you can play");
+        return false;
+      } else return true;
     };
   }
 }

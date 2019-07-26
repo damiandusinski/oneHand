@@ -9,6 +9,7 @@ class Draw {
           this.options[Math.floor(Math.random() * this.options.length)]
         );
       }
+      game.render();
     };
     this.getDrawResult = () => _result;
   }
