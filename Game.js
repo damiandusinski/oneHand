@@ -14,26 +14,30 @@ class Game {
   }
 
   startGame() {
-    if (wallet.checkCanPlay(this.bid.value)) {
-      wallet.setMoney(wallet.getMoney() - this.bid.value);
-      draw.drwaResult();
-      const checkWin = Result.checkWin();
-      if (checkWin) {
-        Result.moneyWonInGame(this.bid.value);
-      }
-    } else alert("Za mało monet");
+    if (this.bid.value > 0) {
+      if (wallet.checkCanPlay(this.bid.value)) {
+        wallet.setMoney(wallet.getMoney() - this.bid.value);
+        draw.drwaResult();
+        const checkWin = Result.checkWin();
+        if (checkWin) {
+          Result.moneyWonInGame(this.bid.value);
+        }
+      } else alert("Za mało monet");
+    } else alert("Postaw coś");
   }
 
   render() {
-    const tab = draw.getDrawResult();
-    const scores = stats.showStats();
-    this.walletContainer.textContent = wallet.getMoney();
-    this.colors.forEach((color, i) => {
-      this.colors[i].style.backgroundColor = tab[i];
-    });
+    if (this.bid.value > 0) {
+      const tab = draw.getDrawResult();
+      const scores = stats.showStats();
+      this.walletContainer.textContent = wallet.getMoney();
+      this.colors.forEach((color, i) => {
+        this.colors[i].style.backgroundColor = tab[i];
+      });
 
-    this.scoreBoard.forEach((item, i) => {
-      this.scoreBoard[i].textContent = scores[i];
-    });
+      this.scoreBoard.forEach((item, i) => {
+        this.scoreBoard[i].textContent = scores[i];
+      });
+    }
   }
 }
